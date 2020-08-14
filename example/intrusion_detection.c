@@ -153,7 +153,7 @@ double Dos_goldeneye_score(struct ndpi_flow_info* flow){
     double flow_score = get_flow_score(scores, n_metrics);
     free(scores);
     return flow_score;
-  }
+}
 
 double Dos_hulk_score(struct ndpi_flow_info* flow){
     double f = (double)flow->first_seen_ms/1000.0, l = (double)flow->last_seen_ms/1000.0;
@@ -205,7 +205,7 @@ double Dos_hulk_score(struct ndpi_flow_info* flow){
     double flow_score = get_flow_score(scores, n_metrics);
     free(scores);
     return flow_score;
-  }
+}
 
 double Dos_slow_score(struct ndpi_flow_info* flow){
     int n_metrics = 6;
