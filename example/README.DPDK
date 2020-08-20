@@ -24,7 +24,14 @@ Run Application
 Supposing to capture packets from device eno1 you can start the
 application as follows:
 
-sudo ./build/ndpiReader -c 1 --vdev=net_pcap0,iface=eno1 -- -v 1
+sudo ./build/ndpiReader -c 1 -- -s 10 -v 2
+-------------------------------------------
+Before -- is the dpdk parameters
+-c 1 means using 1 cpu
+
+After -- is the ndpi parameters
+-s 10 means live sniffing 10 seconds
+-v 2  means show the every sniffing flow results
 
 NOTE:
 - ndpiReader without DPDK support sits in this directory
