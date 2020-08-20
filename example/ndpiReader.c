@@ -828,8 +828,10 @@ static void parseOptions(int argc, char **argv) {
     }
   }
 
+#ifndef USE_DPDK
   if(_pcap_file[0] == NULL)
     help(0);
+#endif
 
   if(csv_fp)
     printCSVHeader();
@@ -2702,6 +2704,8 @@ static pcap_t * openPcapFileOrDevice(u_int16_t thread_id, const u_char * pcap_fi
 
   if(dpdk_port_init(dpdk_port_id, mbuf_pool) != 0)
     rte_exit(EXIT_FAILURE, "DPDK: Cannot init port %u: please see README.dpdk\n", dpdk_port_id);
+  
+  printf("Successfully initial DPDK NIC\n");
 #else
   /* Trying to open the interface */
   if((pcap_handle = pcap_open_live((char*)pcap_file, snaplen,
@@ -3251,6 +3255,8 @@ int orginal_main(int argc, char **argv) {
     memset(ndpi_thread_info, 0, sizeof(ndpi_thread_info));
 
     parseOptions(argc, argv);
+
+	printf("Successfully Parse Option\n");
 
     if(!quiet_mode) {
       printf("\n-----------------------------------------------------------\n"
